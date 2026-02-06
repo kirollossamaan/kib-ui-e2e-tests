@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite">
+	<test thread-count="5" name="Login Page Test">
+		<classes>
+			<class name="kib.tests.LoginPageTest" />
+		</classes>
+	</test> <!--
+	Login Page Test -->
+	<test thread-count="5" name="Products Page Test">
+		<classes>
+			<class name="kib.tests.ProductsPageTest" />
+		</classes>
+	</test> <!--
+	Products Page Test -->
+	<test thread-count="5" name="Card Page Test">
+		<classes>
+			<class name="kib.tests.CardPageTest" />
+		</classes>
+	</test> <!--
+	Card Page Test -->
+	<test thread-count="5" name="Checkout Page Test">
+		<classes>
+			<class name="kib.tests.CheckoutPageTest" />
+		</classes>
+	</test> <!--
+	Checkout Page Test -->
+</suite> <!--
+Suite -->
