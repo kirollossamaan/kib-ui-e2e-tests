@@ -64,7 +64,7 @@ public class CheckoutPageTest extends BaseTest {
 		final String address = "123 Main Street";
 		final String city = "San Jose";
 		final String postalCode = "96150";
-		final String invalidPhone = "abc";
+		final String invalidPhone = "999";
 		final String state = "California";
 
 		CheckoutPage checkoutPage = goToCheckout();
