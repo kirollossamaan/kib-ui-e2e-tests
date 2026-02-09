@@ -23,6 +23,15 @@ public class CardPage extends AbstractComponont {
 
 	By buyNowButtonLocator = By.className("shopify-payment-button");
 
+	public boolean isBuyNowButtonVisible() {
+		try {
+			waitForElementToBeVisible(buyNowButtonLocator);
+			return buyNowButton.isDisplayed();
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
 	public CheckoutPage buyNow() {
 		waitForElementToBeVisible(buyNowButtonLocator);
 		buyNowButton.click();

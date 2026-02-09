@@ -12,6 +12,18 @@ import kib.testcomponents.BaseTest;
 public class CardPageTest extends BaseTest {
 
 	@Test
+	public void buyNowButtonIsVisibleOnCardPage() throws IOException {
+		final String storePassword = "Test123";
+		final String productName = "Test Product";
+
+		loginPage.enterPassword(storePassword);
+		ProductsPage productsPage = loginPage.clickSubmit();
+		CardPage cardPage = productsPage.addToCart(productName);
+
+		Assert.assertTrue(cardPage.isBuyNowButtonVisible(), "Buy Now button should be visible on card page");
+	}
+
+	@Test
 	public void buyNowOpensCheckout() throws IOException {
 		final String storePassword = "Test123";
 		final String productName = "Test Product";
