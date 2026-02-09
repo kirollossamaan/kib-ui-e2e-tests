@@ -17,6 +17,9 @@ End-to-end UI test suite for the KIB Shopify demo store using Selenium + TestNG.
 - `src/test/java/kib/testcomponents` - Base test setup/teardown
 - `src/test/java/kib/tests` - Test classes
 - `testng.xml` - TestNG suite definition
+- **Reports (generated after running tests):**
+  - `target/surefire-reports/index.html` - TestNG main report
+  - `target/surefire-reports/emailable-report.html` - Emailable report
 
 ## Prerequisites
 
@@ -39,37 +42,68 @@ Set `headless=true` to run in the background.
 
 ## Running Tests
 
-Run all tests:
+From the **project root directory** in a terminal, run:
 
 ```
-mvn test
+mvn test -Dsurefire.suiteXmlFiles=testng.xml
 ```
 
-Run a single class:
+This runs the TestNG suite defined in `testng.xml` and generates the reports in `target/surefire-reports/`.
+
+**Other options:**
+
+Run a single test class:
 
 ```
 mvn -Dtest=kib.tests.CheckoutPageTest test
 ```
 
-Run via TestNG suite:
-
-```
-mvn -Dsurefire.suiteXmlFiles=testng.xml test
-```
-
 ## Reports
 
-After a run, reports are generated here:
+After running `mvn test -Dsurefire.suiteXmlFiles=testng.xml` in the terminal (from the project directory), reports are generated in **`target/surefire-reports/`**.
 
-- TestNG report: `test-output/index.html`
-- Surefire report: `target/surefire-reports/`
+**Important reports:**
 
-Open the HTML files in a browser.
+| Report | Path |
+|--------|------|
+| TestNG main report | `target/surefire-reports/index.html` |
+| Emailable report | `target/surefire-reports/emailable-report.html` |
 
-## Test Coverage (Examples)
+Open these HTML files in a browser to view the results.
 
-- Login: valid and invalid password
-- Products: list visibility, missing product behavior
-- Cart/Card: open checkout from product
-- Checkout: required field validations and payment error banner
+## Test Cases (from last run)
+
+Based on **`target/surefire-reports/emailable-report.html`** and **`target/surefire-reports/index.html`**.
+
+**Total: 17 test cases** (17 passed, 0 failed, 0 skipped).
+
+| Page / Test class | # Tests | Test case names |
+|-------------------|--------:|------------------|
+| **Login Page** | 2 | `validPasswordShowsProducts`, `invalidPasswordShowsError` |
+| **Products Page** | 2 | `productsListVisibleAfterLogin`, `getProductThrowsForMissingProduct` |
+| **Card Page** | 2 | `buyNowButtonIsVisibleOnCardPage`, `buyNowOpensCheckout` |
+| **Checkout Page** | 11 | `invalidEmail_showsError`, `invalidPhone_showsError`, `missingFieldShowsError` (×7), `submitOrderSuccessfully`, `submitWithAllFieldsEmpty_showsAllValidationErrors` |
+
+### Login Page (`LoginPageTest`) — 2 tests
+
+- `validPasswordShowsProducts`
+- `invalidPasswordShowsError`
+
+### Products Page (`ProductsPageTest`) — 2 tests
+
+- `productsListVisibleAfterLogin`
+- `getProductThrowsForMissingProduct`
+
+### Card Page (`CardPageTest`) — 2 tests
+
+- `buyNowButtonIsVisibleOnCardPage`
+- `buyNowOpensCheckout`
+
+### Checkout Page (`CheckoutPageTest`) — 11 tests
+
+- `submitWithAllFieldsEmpty_showsAllValidationErrors`
+- `invalidEmail_showsError`
+- `invalidPhone_showsError`
+- `submitOrderSuccessfully`
+- `missingFieldShowsError` (parameterized, 7 runs: email, lastName, address, postal, city, phone, state)
 
